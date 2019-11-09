@@ -24,9 +24,9 @@ def main(corpora, output):
                 index = sample[0].row
 
                 stan = sample[0].value
-                pos_stan = '/'.join(tagger.morphs(stan))
+                pos_stan = ' '.join(tagger.morphs(stan))
                 jeju = sample[1].value
-                pos_jeju = '/'.join(tagger.morphs(jeju))
+                pos_jeju = ' '.join(tagger.morphs(jeju))
 
                 sheet.cell(row=index, column=3).value = pos_stan
                 sheet.cell(row=index, column=4).value = pos_jeju
