@@ -14,7 +14,7 @@ def main(corpora, output):
         with open(file, 'r', encoding='utf-16') as text:
             stopwords = [
                 re.compile('--'),
-                re.compile('구술'),
+                re.compile('구술|녹음|웃음'),
             ]
 
             corpus = text.read().splitlines()

@@ -17,9 +17,9 @@ def main():
 
     print('Input Blank if You Want to Edit Configuration Later.')
 
-    ex_path = input('Input Path to Save Experiment Result and Temp Data: ')
+    ex_path = input('Input Path to Save Experiment Result and Temp Data: ') # TODO: make ~ to home directory
     config['EX_HOME'] = ex_path
-    data_path = input('Input Path to Read Corpora')
+    data_path = input('Input Path to Read Corpora: ')
     config['DATA_HOME'] = data_path
 
     with open(os.path.join(os.getcwd(), config_file), 'w', encoding='utf-8') as f:

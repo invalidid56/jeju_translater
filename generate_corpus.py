@@ -15,31 +15,39 @@ def main(corpora, output):
 
     for file in filelist:
         book = openpyxl.load_workbook(os.path.join(corpora, file))
-        sheet = book.get_sheet_by_name("Sheet1")
+        sheet = book.get_sheet_by_name("Sheet")
 
         tagged = (bool(sheet.cell(row=1, column=3).value) and bool(sheet.cell(row=1, column=4).value))
 
         if not tagged:
             for sample in sheet.rows:
                 index = sample[0].row
-
-                stan = sample[0].value
-                pos_stan = ' '.join(tagger.morphs(stan))
-                jeju = sample[1].value
-                pos_jeju = ' '.join(tagger.morphs(jeju))
-
-                sheet.cell(row=index, column=3).value = pos_stan
-                sheet.cell(row=index, column=4).value = pos_jeju
+                try:
+                    stan = sample[0].value
+                    pos_stan = ' '.join(tagger.morphs(stan))
+                    jeju = sample[1].value
+                    pos_jeju = ' '.join(tagger.morphs(jeju))
+                except :
+                    continue
+                else:
+                    sheet.cell(row=index, column=3).value = pos_stan
+                    sheet.cell(row=index, column=4).value = pos_jeju
 
             book.save(os.path.join(corpora, file))
 
         filename = file[:file.find('.')]
+        if not os.path.exists(output):
+            os.makedirs(output)
         output_dir = os.path.join(output, filename + '.txt')    # Exception: Output Dir not Exists
         output_file = open(output_dir, 'w')
 
         for sample in sheet.rows:
-            line = '\t'.join([s.value for s in sample[:5]]) + '\n'  # Exception: s.value can be no string
-            output_file.write(line)
+            try:
+                line = '\t'.join([s.value for s in sample[:5]]) + '\n'  # Exception: s.value can be no string
+            except TypeError:
+                continue
+            else:
+                output_file.write(line)
 
         output_file.close()
         book.close()
