@@ -6,12 +6,13 @@ import os
 import sys
 import openpyxl
 
-from konlpy.tag import Okt
+from konlpy.tag import Komoran
 
 
 def main(corpora, output):
     filelist = os.listdir(corpora)
-    tagger = Okt()
+    tagger_stan = Komoran()
+    tagger_jeju = Komoran(userdic='userdic.txt') # TODO: If not userdic
 
     for file in filelist:
         book = openpyxl.load_workbook(os.path.join(corpora, file))
@@ -24,10 +25,10 @@ def main(corpora, output):
                 index = sample[0].row
                 try:
                     stan = sample[0].value
-                    pos_stan = ' '.join(tagger.morphs(stan))
+                    pos_stan = ' '.join(tagger_stan.morphs(stan))
                     jeju = sample[1].value
-                    pos_jeju = ' '.join(tagger.morphs(jeju))
-                except :
+                    pos_jeju = ' '.join(tagger_jeju.morphs(jeju))
+                except:
                     continue
                 else:
                     sheet.cell(row=index, column=3).value = pos_stan

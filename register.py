@@ -8,7 +8,7 @@ from tensor2tensor.models.transformer import transformer_base_v1
 
 
 class Reader(object):
-    def __init__(self, file_list, shuffle=True, total=5000):
+    def __init__(self, file_list, shuffle=True, total=500):
         self.file_list = file_list
         self.total = total  # if not total -> 무제
 
