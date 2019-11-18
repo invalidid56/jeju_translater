@@ -13,6 +13,7 @@ class Reader(object):
         self.total = total  # if not total -> 무제
 
     def generate(self):
+        print('Generating!!')
         breaker = False
         for file in self.file_list:
             if breaker:
@@ -23,6 +24,7 @@ class Reader(object):
                     cells = line.split('\t')
                     input_data = cells[3]   # JEJU_TAGGED
                     target_data = cells[2]  # STANDARD TAGGED
+                    print(input_data)
                     if self.total:
                         self.total -= 1
                         if not self.total:
