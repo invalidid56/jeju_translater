@@ -60,7 +60,7 @@ class transformer_t2t(text_problems.Text2TextProblem):
         return 2**15
 
     def generate_samples(self, data_dir, tmp_dir, dataset_split):
-        data_file_list = [os.path.join(data_dir, file) for file in os.listdir(data_dir) if file.endswith('.json')]
+        data_file_list = [os.path.join(data_dir, file) for file in os.listdir(data_dir) if file.endswith('.txt')]
         div = 'train'
         total = None
         reader = Reader(
