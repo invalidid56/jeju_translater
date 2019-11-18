@@ -18,7 +18,7 @@ class Reader(object):
             if breaker:
                 break
             with open(file, 'r') as f:
-                data = json.load(f)
+                data = f.readline()
                 for line in data:
                     cells = line.split('\t')
                     input_data = cells[3]   # JEJU_TAGGED
