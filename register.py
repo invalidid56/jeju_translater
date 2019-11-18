@@ -14,8 +14,8 @@ class Reader(object):
 
     def generate(self):
         breaker = False
+        print(self.file_list)
         for file in self.file_list:
-            print(file)
             if breaker:
                 break
             with open(file, 'r') as f:
@@ -24,7 +24,6 @@ class Reader(object):
                     cells = line.split('\t')
                     input_data = cells[3]   # JEJU_TAGGED
                     target_data = cells[2]  # STANDARD TAGGED
-                    print(input_data)
                     if self.total:
                         self.total -= 1
                         if not self.total:
