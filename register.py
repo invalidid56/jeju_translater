@@ -13,9 +13,9 @@ class Reader(object):
         self.total = total  # if not total -> 무제
 
     def generate(self):
-        print('Generating!!')
         breaker = False
         for file in self.file_list:
+            print(file)
             if breaker:
                 break
             with open(file, 'r') as f:
